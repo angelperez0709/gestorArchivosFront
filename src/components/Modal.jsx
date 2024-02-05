@@ -1,8 +1,9 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import Context from "../context/UserContext";
 import { gsap } from "gsap";
 import createFolder from "../services/createFolder";
 const Modal = ({ idDirectory, onClose }) => {
+  const [error,showError] = useState(false);
   const { token } = useContext(Context);
   const element = useRef();
   const name = useRef();
@@ -15,7 +16,10 @@ const Modal = ({ idDirectory, onClose }) => {
     tweenRef.current.eventCallback("onReverseComplete", () => onClose());
   };
   const handleCreateFolder = () => {
-    createFolder(idDirectory, name.current.value,token);
+    if(name.current.value === "") return showError(true);
+    createFolder(idDirectory, name.current.value,token).then((data)=>{
+      console.log(data)
+    });
   };
 
   return (
@@ -34,6 +38,7 @@ const Modal = ({ idDirectory, onClose }) => {
             className="outline-none focus-visible:border-blue-400 w-full p-2 border-2 border-gray-300 rounded-md"
             placeholder="Folder Name"
           ></input>
+          {error && <small className="text-red-500">Name is required</small>}
         </div>
         <div className="text-right flex justify-end gap-1">
           <button

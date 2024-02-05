@@ -10,7 +10,7 @@ export default async function createFolder(parentDirectory,name, token) {
       body: JSON.stringify({ parentDirectory,name }),
     }).then((res) => {
       return res.json().then((data) => {
-        console.log(data);
+       return data.data;
       });
     });
     return response;

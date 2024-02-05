@@ -25,6 +25,7 @@ export async function getDataDirectory(id, token) {
     },
     body: JSON.stringify({ id }),
   }).then((res) => {
+    
     return res.json().then((data) => {
       return data.data;
     });
