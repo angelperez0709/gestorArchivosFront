@@ -10,7 +10,7 @@ export default async function getDirectory(parentDirectory, token) {
     body: JSON.stringify({ parentDirectory }),
   }).then((res) => {
     return res.json().then((data) => {
-      return data.data;
+      return data;
     });
   });
   return response;

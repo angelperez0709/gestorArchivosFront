@@ -3,7 +3,7 @@ import Context from "../context/UserContext";
 import { gsap } from "gsap";
 import createFolder from "../services/createFolder";
 const Modal = ({ idDirectory, onClose }) => {
-  const [error,showError] = useState(false);
+  const [error, showError] = useState(false);
   const { token } = useContext(Context);
   const element = useRef();
   const name = useRef();
@@ -16,9 +16,9 @@ const Modal = ({ idDirectory, onClose }) => {
     tweenRef.current.eventCallback("onReverseComplete", () => onClose());
   };
   const handleCreateFolder = () => {
-    if(name.current.value === "") return showError(true);
-    createFolder(idDirectory, name.current.value,token).then((data)=>{
-      console.log(data)
+    if (name.current.value === "") return showError(true);
+    createFolder(idDirectory, name.current.value, token).then((data) => {
+      console.log(data);
     });
   };
 

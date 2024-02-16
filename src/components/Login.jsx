@@ -10,6 +10,7 @@ export default function Login() {
   }
   const handleClickLogin = () => {
     login({ username, password });
+    navigate("/")
   };
   const navigate = useNavigate();
 

@@ -14,8 +14,10 @@ function App() {
   }, []);
   return (
     <Routes>
+        <Route path="/" element={<Folders></Folders>}></Route>
       <Route path="/login" element={<Login></Login>}></Route>
-      <Route path="/*" element={<Folders></Folders>}></Route>
+      <Route path="/:folder" element={<Folders></Folders>}></Route>
+      <Route path="/error" element={<div>Error</div>}></Route>
     </Routes>
   );
 }

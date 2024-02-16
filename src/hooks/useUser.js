@@ -1,24 +1,28 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext} from "react";
 import Context from "../context/UserContext";
 import loginService from "../services/login";
 export default function useUser() {
   const { token, setToken } = useContext(Context);
-  const login = useCallback(({ username, password }) => {
-    loginService({ username, password }).then((data) => {
-      if (data.ok) {
-        sessionStorage.setItem("token", data.data);
-        setToken(data.data);
-      }
-    });
-  }, [setToken]);
+  const login = useCallback(
+    ({ username, password }) => {
+      loginService({ username, password }).then((data) => {
+        if (data.ok) {
+          sessionStorage.setItem("token", data.data);
+          setToken(data.data);
+        }
+      });
+    },
+    [setToken]
+  );
 
-  const logOut = useCallback(() => {
+  const logOut = () => {
     setToken("");
-    localStorage.removeItem("token");
-  });
+    sessionStorage.removeItem("token");
+  };
 
   return {
     isLogged: Boolean(token),
     login,
+    logOut
   };
 }
