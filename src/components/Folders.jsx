@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import Header from "./Header";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams,useLocation } from "react-router-dom";
 import Context from "../context/UserContext";
 import ButtonNew from "./ButtonNew/";
 import Modal from "./Modal";
@@ -8,14 +8,13 @@ import ElementDirectory from "./ElementDirectory";
 import useUser from "../hooks/useUser";
 import FolderDirectory from "./FolderDirectory";
 import useDirectory from "../hooks/useDirectory";
-import PathContext from "../context/PathContext";
+//import PathContext from "../context/PathContext";
 
 export default function Folders() {
-  let { prop } = useParams();
-  prop = prop || "";
+  let location = useLocation().pathname.substring(1);
   const [showModal, setShowModal] = useState(false);
   const { token } = useContext(Context);
-  const { actualUrl, setActualUrl } = useContext(PathContext);
+  //const { actualUrl, setActualUrl } = useContext(PathContext);
   const { isLogged } = useUser();
   const { directory, updateDataDirectory } = useDirectory();
   const navigate = useNavigate();
@@ -28,24 +27,31 @@ export default function Folders() {
 
   useEffect(() => {
     if (isLogged) {
-      updateDataDirectory({ path: actualUrl, token });
+      updateDataDirectory({ path: location, token });
     }else{
       navigate("/login");
     }
-  }, [actualUrl]);
+  }, [location]);
 
+  // const handleBackNavigation = () => {
+  //   console.log("entra evento")
+  //   setActualUrl(directory.prevPath);
+  //   navigate(`/${directory.prevPath}`);
+  // }
+  window.addEventListener('locationchange',(event)=>{
+    console.log(event)
+  });  
   const updateData = ({ id, token }) => {
     updateDataDirectory({ id, token });
   };
 
   const changeFolder = (folder) => {
-    setActualUrl(folder);
     navigate(`/${folder}`);
   };
 
   const updateDirectory = () => {
     setShowModal(false);
-    updateDataDirectory({ path: actualUrl, token });
+    updateDataDirectory({ path: location, token });
   };
 
 
