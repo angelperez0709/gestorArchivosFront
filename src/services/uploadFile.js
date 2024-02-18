@@ -4,6 +4,7 @@ export default async function uploadFile(file, token, id) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("id", id);
+  console.log("entra");
   const response = await fetch(`${baseUrl}`, {
     method: "POST",
     headers: {

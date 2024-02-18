@@ -3,17 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { getDataDirectory } from "../services/getDirectory";
 
 const useDirectory = () => {
-  const [dataDirectory, setDataDirectory] = useState({
+  const [directory, setDirectory] = useState({
+    path: "",
+    id: 0,
     folders: [],
     files: [],
     prevPath: "",
   });
   const navigate = useNavigate();
 
-  const updateDataDirectory = ({ id, token }) => {
-    getDataDirectory(id, token).then((data) => {
+  const updateDataDirectory = ({ path, token }) => {
+    getDataDirectory(path, token).then((data) => {
       if (data.status === 200) {
-        setDataDirectory({
+        setDirectory({
+          path: data.path,
+          id: data.id,
           folders: data.directories,
           files: data.files,
           prevPath: data.prevPath,
@@ -24,7 +28,7 @@ const useDirectory = () => {
     });
   };
 
-  return { dataDirectory, updateDataDirectory };
+  return { directory, updateDataDirectory };
 };
 
 export default useDirectory;

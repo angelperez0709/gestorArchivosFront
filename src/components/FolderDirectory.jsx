@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import ElementDirectory from "./ElementDirectory";
 import { useNavigate } from "react-router-dom";
-export default function FolderDirectory({ folder }) {
-  console.log(folder);
-  const navigate = useNavigate();
+import PathContext from "../context/PathContext";
+export default function FolderDirectory({ folder,changeFolder }) {
+  const { setActualUrl } = useContext(PathContext);
   const handleOpenFolder = () => {
-    navigate(`/${folder.namePath}`);
+    changeFolder(folder.namePath);
+    //navigate(`/${folder.namePath}`);
   };
   return (
     <div onClick={handleOpenFolder}>

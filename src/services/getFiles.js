@@ -10,7 +10,7 @@ export default async function getFiles(path, token) {
     body: JSON.stringify({ path }),
   }).then((res) => {
     return res.json().then((data) => {
-      console.log(data);
+      return data;
     });
   });
   return response;

@@ -16,16 +16,15 @@ export default async function getDirectory(parentDirectory, token) {
   return response;
 }
 
-export async function getDataDirectory(id, token) {
+export async function getDataDirectory(path, token) {
   const response = await fetch(`${baseUrl}data.php`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `${token}`,
     },
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ path }),
   }).then((res) => {
-    
     return res.json().then((data) => {
       return data.data;
     });

@@ -10,7 +10,6 @@ export default function Login() {
   }
   const handleClickLogin = () => {
     login({ username, password });
-    navigate("/")
   };
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ export default function Login() {
     if (isLogged) {
       navigate("/");
     }
-  }, []);
+  }, [isLogged]);
   return (
     <section className="grid place-content-center overflow-hidden w-full h-[100vh] bg-white">
       <div className="border border-gray-200 p-10 rounded-md w-[20vw]">

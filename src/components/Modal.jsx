@@ -2,7 +2,8 @@ import { useEffect, useRef, useContext, useState } from "react";
 import Context from "../context/UserContext";
 import { gsap } from "gsap";
 import createFolder from "../services/createFolder";
-const Modal = ({ idDirectory, onClose }) => {
+
+const Modal = ({ idDirectory, onClose,updateDirectory }) => {
   const [error, showError] = useState(false);
   const { token } = useContext(Context);
   const element = useRef();
@@ -15,10 +16,14 @@ const Modal = ({ idDirectory, onClose }) => {
     tweenRef.current.reverse();
     tweenRef.current.eventCallback("onReverseComplete", () => onClose());
   };
+  
   const handleCreateFolder = () => {
     if (name.current.value === "") return showError(true);
     createFolder(idDirectory, name.current.value, token).then((data) => {
-      console.log(data);
+      if (typeof data.error !== "undefined") {
+       return showError(false);
+      }
+      updateDirectory();
     });
   };
 

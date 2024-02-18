@@ -4,11 +4,10 @@ import { MdOutlineDriveFolderUpload, MdUploadFile } from "react-icons/md";
 import uploadFile from "../../services/uploadFile";
 import Loader from "../Loader";
 
-export default function ButtonNew({ token, id,onButtonClick }) {
+export default function ButtonNew({ token, id, onButtonClick, updateData }) {
   const [showOptions, setShowOptions] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const inputRef = useRef();
-
   const handleCreateFolder = () => {
     onButtonClick();
   };
@@ -34,11 +33,10 @@ export default function ButtonNew({ token, id,onButtonClick }) {
       const formData = new FormData();
       formData.append("file", file);
       uploadFile(file, token, id).then((data) => {
-        if (typeof data.error != "undefined") {
-          //clear input files
-          fileInput.value = "";
-        } else {
+        fileInput.value = "";
+        if (typeof data.error == "undefined") {
           setShowLoader(false);
+          updateData({ id, token });
         }
       });
     }
