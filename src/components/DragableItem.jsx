@@ -12,8 +12,9 @@ export default function DraggableItem({ handleDragOver }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      "image/png": [".png",".jpg",".jpeg",".webp"],
+      "image/*": [".png",".jpg",".jpeg",".webp"],
       "text/html": [".html", ".htm"],
+      "application/pdf": [".pdf"],
     },
   });
 

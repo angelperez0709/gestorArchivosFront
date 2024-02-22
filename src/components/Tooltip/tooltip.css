@@ -1,0 +1,14 @@
+.tool-tip:before{
+    content: " ";
+    position: absolute;
+    width: 0;
+    border: solid transparent;
+    height: 0;
+    left: 50%;
+    pointer-events: none;
+    border-width: 6px;
+    margin-left: -6px;
+    top: 100%;
+    border-top-color: black;
+
+}
