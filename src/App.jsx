@@ -1,10 +1,10 @@
 import "./App.css";
+import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Folders from "./components/Folders";
 import Login from "./components/Login";
 import { PathContextProvider } from "./context/PathContext";
 import useUser from "./hooks/useUser";
-import { useEffect } from "react";
 function App() {
   const navigate = useNavigate();
   const { isLogged } = useUser();
@@ -12,7 +12,7 @@ function App() {
     if (!isLogged) {
       navigate("/login");
     }
-  }, []);
+  }, [isLogged]);
   return (
     <PathContextProvider>
       <Routes>
