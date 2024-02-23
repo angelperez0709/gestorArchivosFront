@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import Header from "./Header";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Context from "../context/UserContext";
 import ButtonNew from "./ButtonNew/";
 import Modal from "./Modal";
@@ -10,9 +10,8 @@ import useDirectory from "../hooks/useDirectory";
 //import PathContext from "../context/PathContext";
 
 export default function Folders() {
-  let location = useLocation().pathname.substring(1);
   const [showModal, setShowModal] = useState(false);
-  const { token } = useContext(Context);
+  const { token, location } = useContext(Context);
   const { directory, updateDataDirectory } = useDirectory();
   const navigate = useNavigate();
   const openModal = () => {
@@ -27,7 +26,7 @@ export default function Folders() {
   }, [location]);
 
   const updateData = () => {
-    updateDataDirectory({ path:location, token });
+    updateDataDirectory({ path: location, token });
   };
 
   const changeFolder = (folder) => {
@@ -52,7 +51,7 @@ export default function Folders() {
           ></ButtonNew>
         </div>
         <div className="p-5">
-          <div className="mb-5">{directory.path}</div>
+          <div className="mb-5 text-xl">{directory.path}</div>
 
           <div className="grid gap-2 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
             {directory.path !== "home" && (
@@ -71,6 +70,7 @@ export default function Folders() {
             {directory.folders.map((folder) => (
               <FolderDirectory
                 changeFolder={changeFolder}
+                updateData={updateData}
                 key={folder.id + folder.name}
                 folder={folder}
               ></FolderDirectory>
@@ -80,6 +80,7 @@ export default function Folders() {
                 key={file.id + file.name}
                 id={file.id}
                 name={file.name}
+                handleUpdateData={updateData}
               ></ElementDirectory>
             ))}
           </div>

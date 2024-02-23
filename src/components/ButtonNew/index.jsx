@@ -51,6 +51,7 @@ export default function ButtonNew({ token, id, onButtonClick, updateData }) {
       checkFile(file[0]);
     }
   };
+
   return (
     <>
       <div className="p-5 bg-gray-50 h-[--height-main]">

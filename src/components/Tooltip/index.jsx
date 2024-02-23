@@ -19,7 +19,7 @@ const Tooltip = (props) => {
       onMouseLeave={hideTip}
     >
       {props.children}
-      {active && (
+      {active && props.content != ".." && (
         <div className="tool-tip absolute rounded-sm left-2/4 -translate-x-2/4 p-1.5 text-white bg-gray-950 text-sm z-50 whitespace-nowrap bottom-16">
           {props.content}
         </div>

@@ -1,15 +1,42 @@
-import { Fragment } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import deleteFolder from "../services/deleteFolder";
+import deleteFile from "../services/deleteFile";
+import Context from "../context/UserContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
-export default function DropDown() {
+//hacer que se ejecute el updateDataDirectory en folder
+export default function DropDown({ id, type, updateData }) {
+  const { token } = useContext(Context);
+  const [showError, setShowError] = useState(false);
   const handleOnClick = (e) => {
     e.stopPropagation();
-  }
+    setShowError(false);
+  };
+
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    if (type == "folder") {
+      deleteFolder(id, token).then((data) => {
+        if (data.data.status == 200) {
+          updateData();
+        } else {
+          setShowError(true);
+        }
+      });
+    } else {
+      deleteFile(id, token).then((data) => {
+        if (data.data.status == 200) {
+          updateData();
+        } else {
+          setShowError(true);
+        }
+      });
+    }
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -35,13 +62,15 @@ export default function DropDown() {
             <Menu.Item>
               {({ active }) => (
                 <a
+                  onClick={handleDelete}
                   href="#"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
-                  Delete
+                  Delete{" "}
+                  {showError && <span className="text-red-500">Try Again</span>}
                 </a>
               )}
             </Menu.Item>

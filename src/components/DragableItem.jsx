@@ -19,7 +19,7 @@ export default function DraggableItem({ handleDragOver }) {
   });
 
   return (
-    <div className="container">
+    <div className="container cursor-pointer">
       <div {...getRootProps({ className: "p-8 mt-5 border-4 border-dashed rounded-lg" })}>
         <input {...getInputProps()} />
         {isDragActive ? (

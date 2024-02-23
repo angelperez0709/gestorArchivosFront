@@ -3,7 +3,7 @@ import Context from "../context/UserContext";
 import { gsap } from "gsap";
 import createFolder from "../services/createFolder";
 
-const Modal = ({ idDirectory, onClose,updateDirectory }) => {
+const Modal = ({ idDirectory, onClose, updateDirectory }) => {
   const [error, showError] = useState(false);
   const { token } = useContext(Context);
   const element = useRef();
@@ -16,15 +16,21 @@ const Modal = ({ idDirectory, onClose,updateDirectory }) => {
     tweenRef.current.reverse();
     tweenRef.current.eventCallback("onReverseComplete", () => onClose());
   };
-  
+
   const handleCreateFolder = () => {
     if (name.current.value === "") return showError(true);
     createFolder(idDirectory, name.current.value, token).then((data) => {
       if (typeof data.error !== "undefined") {
-       return showError(false);
+        return showError(false);
       }
       updateDirectory();
     });
+  };
+
+  const handleCreateFolderKey = (e) => {
+    if (e.key === "Enter") {
+      handleCreateFolder();
+    }
   };
 
   return (
@@ -39,6 +45,7 @@ const Modal = ({ idDirectory, onClose,updateDirectory }) => {
         <div>
           <input
             ref={name}
+            onKeyUp={handleCreateFolderKey}
             type="text"
             className="outline-none focus-visible:border-blue-400 w-full p-2 border-2 border-gray-300 rounded-md"
             placeholder="Folder Name"
