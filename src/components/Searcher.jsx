@@ -1,16 +1,23 @@
-import React from 'react';
+import { useRef } from "react";
 
-const Searcher = () => {
-    const handleSearch = (event) => {
-        const searchTerm = event.target.value;
-        // Perform search logic here
-    };
+const Searcher = ({filter,value}) => {
+  const ref = useRef(null);
+  const handleSearch = () => {
+    filter(ref.current.value);
+  };
 
-    return (
-        <div>
-            <input type="text" placeholder="Search files" onChange={handleSearch} />
-        </div>
-    );
+  return (
+    <div className="flex items-center h-full">
+      <input
+        ref={ref}
+        className="ml-5 border p-1 rounded-lg outline-none text-sm"
+        type="text"
+        placeholder="Search"
+        value={value}
+        onChange={handleSearch}
+      />
+    </div>
+  );
 };
 
 export default Searcher;

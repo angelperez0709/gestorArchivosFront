@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost/api/directory/";
+const baseUrl = import.meta.env.VITE_BACKEND_URL+import.meta.env.VITE_DIRECTORY_URL;
 
 export default async function deleteFolder(idDirectory, token) {
   const response = await fetch(`${baseUrl}delete.php`, {

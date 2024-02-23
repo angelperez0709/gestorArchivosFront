@@ -1,7 +1,7 @@
-const baseUrl = "http://localhost/api/files/index.php";
+const baseUrl = import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_FILES_URL;
 
 export default async function getFiles(path, token) {
-  const response = await fetch(baseUrl, {
+  const response = await fetch(`${baseUrl}index.php`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

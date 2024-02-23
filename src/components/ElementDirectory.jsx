@@ -5,6 +5,7 @@ export default function ElementDirectory({ id, name, type, handleUpdateData }) {
   const updateData = () => {
     handleUpdateData();
   };
+
   return (
     <>
       <Tooltip content={name}>

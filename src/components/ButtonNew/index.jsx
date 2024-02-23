@@ -56,7 +56,7 @@ export default function ButtonNew({ token, id, onButtonClick, updateData }) {
     <>
       <div className="p-5 bg-gray-50 h-[--height-main]">
         <button
-          className="shadow-[0_0.5px_3px_0_black] w-full mx-auto block lg:w-7/12 font-semibold p-2 rounded-md hover:bg-gray-200 cursor-pointer transition-all duration-300"
+          className="shadow-[0_0.5px_3px_0_black] w-full mx-auto block xl:w-7/12 font-semibold p-2 rounded-md hover:bg-gray-200 cursor-pointer transition-all duration-300"
           onClick={handleButtonClick}
         >
           + New
@@ -66,14 +66,14 @@ export default function ButtonNew({ token, id, onButtonClick, updateData }) {
           <ul className="mt-10 bg-white">
             <li
               onClick={handleCreateFolder}
-              className="py-2 cursor-pointer hover:bg-gray-300 flex justify-center items-center gap-1 text-sm"
+              className="p-2 cursor-pointer hover:bg-gray-300 flex justify-center items-center gap-1 text-sm"
             >
-              <MdOutlineDriveFolderUpload /> Create Folder
+              <MdOutlineDriveFolderUpload /> Folder
             </li>
             <hr></hr>
             <li
               onClick={handleImportFile}
-              className="py-2 cursor-pointer hover:bg-gray-300 flex justify-center items-center gap-1 text-sm"
+              className="p-2 cursor-pointer hover:bg-gray-300 flex justify-center items-center gap-1 text-sm"
             >
               <input
                 ref={inputRef}
@@ -82,7 +82,7 @@ export default function ButtonNew({ token, id, onButtonClick, updateData }) {
                 id="file"
                 style={{ display: "none" }}
               />
-              <MdUploadFile /> Import File
+              <MdUploadFile /> File
             </li>
           </ul>
         )}

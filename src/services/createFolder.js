@@ -1,7 +1,7 @@
-const baseUrl = "http://localhost/api/directory/createDirectory.php";
+const baseUrl = import.meta.env.VITE_BACKEND_URL+import.meta.env.VITE_DIRECTORY_URL;
 
 export default async function createFolder(parentDirectory,name, token) {
-    const response = await fetch(baseUrl, {
+    const response = await fetch(baseUrl+"createDirectory.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

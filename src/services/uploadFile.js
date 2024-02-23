@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost/api/files/";
+const baseUrl = import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_FILES_URL;
 
 export default async function uploadFile(file, token, id) {
   const formData = new FormData();

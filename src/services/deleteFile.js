@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost/api/files/";
+const baseUrl =
+  import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_FILES_URL;
 
 export default async function deleteFolder(idFile, token) {
   const response = await fetch(`${baseUrl}delete.php`, {
@@ -11,7 +12,7 @@ export default async function deleteFolder(idFile, token) {
     body: JSON.stringify({ idFile }),
   }).then((res) => {
     return res.json().then((data) => {
-    return data;
+      return data;
     });
   });
   return response;
