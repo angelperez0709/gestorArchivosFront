@@ -34,13 +34,13 @@ export async function changeDataUser({username,newPassword,repeatedPassword,toke
   })
     .then((res) => {
       return res.json().then((res) => {
-        return res;
+        return res.data;
       });
     })
-    .catch((error) => {
+    .catch(() => {
      return {
-        ok: false,
-        data: error,
+      status: 500,
+      message: "Server error, try again later",
      }
     });
   return response;

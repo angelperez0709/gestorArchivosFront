@@ -2,6 +2,7 @@ import { useEffect, useRef, useContext, useState } from "react";
 import Context from "../context/UserContext";
 import { gsap } from "gsap";
 import { changeDataUser } from "../services/login";
+import useUser from "../hooks/useUser";
 
 export default function ModalUser({ onClose }) {
   const [error, setError] = useState({
@@ -16,6 +17,7 @@ export default function ModalUser({ onClose }) {
     repeatedPassword: "",
   });
   const { token } = useContext(Context);
+  const { logOut } = useUser();
   const element = useRef();
   let tweenRef = useRef();
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function ModalUser({ onClose }) {
 
   const handleClickCreate = () => {
     let { newPassword, repeatedPassword } = password;
-    if(username == "" && newPassword == "" && repeatedPassword == ""){
+    if (username == "" && newPassword == "" && repeatedPassword == "") {
       setError({
         show: true,
         message: "At least one field is required, username or password",
@@ -37,8 +39,10 @@ export default function ModalUser({ onClose }) {
     }
     changeDataUser({ username, newPassword, repeatedPassword, token }).then(
       (data) => {
-        if (data.ok) {
+        if (data.status === 200) {
           setSuccess(true);
+        } else if (data.status === 401) {
+          logOut();
         } else {
           setError({
             show: true,
@@ -48,20 +52,19 @@ export default function ModalUser({ onClose }) {
       }
     );
   };
-useEffect(() => {
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        handleClose();
+      }, 1000);
+    }
+  }, [success]);
 
-  if (success) {
-    setTimeout(() => {
-      handleClose();
-    }, 1000);
-  }
-}, [success]);
-
-useEffect(() => {
-  if (error.show) {
-    setSuccess(false);
-  }
-}, [error]);
+  useEffect(() => {
+    if (error.show) {
+      setSuccess(false);
+    }
+  }, [error]);
 
   const handleChangeData = (e) => {
     if (e.key === "Enter") {

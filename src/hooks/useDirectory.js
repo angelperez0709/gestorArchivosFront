@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDataDirectory } from "../services/getDirectory";
+import useUser from "./useUser";
 
 const useDirectory = () => {
+  const {logOut} = useUser();
   const [directory, setDirectory] = useState({
     path: "",
     id: 0,
@@ -22,6 +24,8 @@ const useDirectory = () => {
           files: data.files,
           prevPath: data.prevPath,
         });
+      } else if(data.status === 401){
+        logOut();
       } else {
         navigate("/error");
       }
