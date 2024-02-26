@@ -12,6 +12,7 @@ export default async function downloadFile(idFile, token) {
       "Accept-Language": "es-ES,es;q=0.9",
       "Origin": "https://gestor-archivos-front.vercel.app",
       "Referer": "https://gestor-archivos-front.vercel.app/",
+      "Content-Type": "application/octet-stream",
     },
     body: JSON.stringify({ idFile,token }),
   }).then((res) => {
