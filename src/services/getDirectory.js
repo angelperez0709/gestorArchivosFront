@@ -19,7 +19,6 @@ export async function getDataDirectory(path, token) {
   const response = await fetch(`${baseUrl}data.php`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
     body: JSON.stringify({ path }),
