@@ -5,7 +5,6 @@ export default async function downloadFile(idFile, token) {
   const response = await fetch(`${baseUrl}download.php`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       "Content-Description": "File Transfer",
       "Content-Disposition": "attachment; filename=downloaded-file",
       Authorization: `${token}`,

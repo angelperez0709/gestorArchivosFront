@@ -4,7 +4,6 @@ export default async function getFiles(path, token) {
   const response = await fetch(`${baseUrl}index.php`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
     body: JSON.stringify({ path }),

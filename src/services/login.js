@@ -24,7 +24,6 @@ export async function changeDataUser({username,newPassword,repeatedPassword,toke
   const response = await fetch(`${baseUrl}change.php`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       "Authorization": `${token}`
     },
     body: JSON.stringify({ username, newPassword, repeatedPassword }),
