@@ -9,6 +9,7 @@ export default async function downloadFile(idFile, token) {
     return res.blob().then((blob) => {
       let fileName = sessionStorage.getItem("name");
       const url = window.URL.createObjectURL(new Blob([blob]));
+      console.log(url);
       const link = document.createElement("a");
       link.href = url;
       link.download = fileName;
