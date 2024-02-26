@@ -8,6 +8,7 @@ export default async function downloadFile(idFile, token) {
   }).then((res) => {
     console.log(res);
     return res.blob().then((blob) => {
+      console.log(blob);
       let fileName = res.headers.get("Content-Disposition").split("filename=")[1];
       console.log(fileName)
       const url = window.URL.createObjectURL(new Blob([blob]));
