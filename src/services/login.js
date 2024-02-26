@@ -4,9 +4,6 @@ const baseUrl =
 export default async function loginService({ username, password }) {
   const response = await fetch(`${baseUrl}index.php`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({ username, password }),
   })
     .then((res) => {
