@@ -16,7 +16,7 @@ export default function Register() {
   }
   const handleClickRegister = () => {
     registerUser({ username, password }).then((data) => {
-        if (data.status === "200") {
+        if (data.status == 200) {
             navigate("/");
       }else{
         setError({
