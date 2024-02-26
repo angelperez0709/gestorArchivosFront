@@ -2,7 +2,7 @@ const baseUrl = import.meta.env.VITE_BACKEND_URL+import.meta.env.VITE_DIRECTORY_
 
 export default async function deleteFolder(idDirectory, token) {
   const response = await fetch(`${baseUrl}delete.php`, {
-    method: "DELETE",
+    method: "POST",
     body: JSON.stringify({ idDirectory,token }),
   }).then((res) => {
     return res.json().then((data) => {
