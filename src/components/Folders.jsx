@@ -55,8 +55,7 @@ export default function Folders() {
     updateDataDirectory({ path: location, token });
   };
 
-  const handleDownloadFile = (id,name) => {
-    sessionStorage.setItem("name", name);
+  const handleDownloadFile = (id) => {
     downloadFile(id, token);
   };
 
@@ -105,7 +104,7 @@ export default function Folders() {
                 file.name.toLowerCase().includes(filter.toLowerCase()) && (
                   <div
                     onClick={() => {
-                      handleDownloadFile(file.id,file.name);
+                      handleDownloadFile(file.id);
                     }}
                     key={"div" + file.id + file.name}
                   >

@@ -16,10 +16,8 @@ export default async function downloadFile(idFile, token) {
     },
     body: JSON.stringify({ idFile,token }),
   }).then((res) => {
-    console.log(res);
     return res.blob().then((blob) => {
-      console.log(blob);
-      let fileName = sessionStorage.getItem("name");
+      let fileName = res.headers.get("content-disposition").split("filename=")[1];
       const url = window.URL.createObjectURL(new Blob([blob]));
       console.log(url);
       const link = document.createElement("a");
