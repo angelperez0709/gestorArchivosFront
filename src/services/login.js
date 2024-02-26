@@ -23,10 +23,7 @@ export default async function loginService({ username, password }) {
 export async function changeDataUser({username,newPassword,repeatedPassword,token}){
   const response = await fetch(`${baseUrl}change.php`, {
     method: "POST",
-    headers: {
-      "Authorization": `${token}`
-    },
-    body: JSON.stringify({ username, newPassword, repeatedPassword }),
+    body: JSON.stringify({ username, newPassword, repeatedPassword,token }),
   })
     .then((res) => {
       return res.json().then((res) => {

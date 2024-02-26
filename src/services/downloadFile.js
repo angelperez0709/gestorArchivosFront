@@ -7,9 +7,8 @@ export default async function downloadFile(idFile, token) {
     headers: {
       "Content-Description": "File Transfer",
       "Content-Disposition": "attachment; filename=downloaded-file",
-      Authorization: `${token}`,
     },
-    body: JSON.stringify({ idFile }),
+    body: JSON.stringify({ idFile,token }),
   }).then((res) => {
     return res.blob().then((blob) => {
       let fileName = res.headers.get("Content-Disposition").split("filename=")[1];

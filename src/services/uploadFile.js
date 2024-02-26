@@ -4,11 +4,9 @@ export default async function uploadFile(file, token, id) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("id", id);
+  formData.append("token", token);
   const response = await fetch(`${baseUrl}`, {
     method: "POST",
-    headers: {
-      Authorization: `${token}`
-    },
     body: formData,
   }).then((res) => {
     return res.json().then((data) => {

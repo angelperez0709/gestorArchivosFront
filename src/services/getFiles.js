@@ -3,10 +3,7 @@ const baseUrl = import.meta.env.VITE_BACKEND_URL + import.meta.env.VITE_FILES_UR
 export default async function getFiles(path, token) {
   const response = await fetch(`${baseUrl}index.php`, {
     method: "POST",
-    headers: {
-      Authorization: `${token}`,
-    },
-    body: JSON.stringify({ path }),
+    body: JSON.stringify({ path,token }),
   }).then((res) => {
     return res.json().then((data) => {
       return data;

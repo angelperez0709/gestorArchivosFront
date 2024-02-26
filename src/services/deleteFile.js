@@ -4,11 +4,7 @@ const baseUrl =
 export default async function deleteFolder(idFile, token) {
   const response = await fetch(`${baseUrl}delete.php`, {
     method: "DELETE",
-    headers: {
-      "Access-Control-Allow-Methods": "DELETE",
-      Authorization: `${token}`,
-    },
-    body: JSON.stringify({ idFile }),
+    body: JSON.stringify({ idFile,token }),
   }).then((res) => {
     return res.json().then((data) => {
       return data;
