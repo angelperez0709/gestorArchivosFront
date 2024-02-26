@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Searcher from "../Searcher";
 import { FaUser } from "react-icons/fa";
-import ListUser from "../listUser";
+import ListUser from "../ListUser";
 import "./style.css";
 
 function Header({ filterFolders, value,openModal }) {
