@@ -4,6 +4,11 @@ const baseUrl =
 export default async function downloadFile(idFile, token) {
   const response = await fetch(`${baseUrl}download.php`, {
     method: "POST",
+    //add all headers
+    headers: {
+      "Content-Description": "File Transfer",
+      "Content-Disposition": "attachment; filename=downloaded-file",
+    },
     body: JSON.stringify({ idFile,token }),
   }).then((res) => {
     return res.blob().then((blob) => {
