@@ -3,7 +3,7 @@ const baseUrl =
 
 export default async function deleteFolder(idFile, token) {
   const response = await fetch(`${baseUrl}delete.php`, {
-    method: "DELETE",
+    method: "POST",
     body: JSON.stringify({ idFile,token }),
   }).then((res) => {
     return res.json().then((data) => {
