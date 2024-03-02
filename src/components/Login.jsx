@@ -14,7 +14,7 @@ export default function Login() {
       if (data.ok) {
         sessionStorage.setItem("token", data.data.token);
         sessionStorage.setItem("username", data.data.username);
-        setToken(data.data);
+        setToken(data.data.token);
       } else {
         setShowError(true);
       }
