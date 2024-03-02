@@ -25,6 +25,7 @@ export default function useUser() {
   const logOut = () => {
     setToken("");
     sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
   };
 
   return {

@@ -10,7 +10,7 @@ export default function ModalUser({ onClose }) {
     message: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(sessionStorage.getItem("username") || "");
   const [success, setSuccess] = useState(false);
   const [password, setPassword] = useState({
     newPassword: "",

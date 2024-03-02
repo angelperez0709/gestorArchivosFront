@@ -12,7 +12,8 @@ export default function Login() {
   const handleClickLogin = () => {
     login({ username, password }).then((data) => {
       if (data.ok) {
-        sessionStorage.setItem("token", data.data);
+        sessionStorage.setItem("token", data.data.token);
+        sessionStorage.setItem("username", data.data.username);
         setToken(data.data);
       } else {
         setShowError(true);
