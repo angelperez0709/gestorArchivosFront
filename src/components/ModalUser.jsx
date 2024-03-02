@@ -46,7 +46,7 @@ export default function ModalUser({ onClose }) {
         } else {
           setError({
             show: true,
-            message: data.error,
+            message: data.message,
           });
         }
       }
